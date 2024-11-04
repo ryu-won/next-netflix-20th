@@ -55,7 +55,6 @@ const LandingButton = () => {
 export default LandingButton;
 
 const Container = styled.div`
-  width: 100vw;
   height: 100vh;
   margin: 0 auto;
   background-color: black;
@@ -73,7 +72,7 @@ const IntroButton = styled(motion.div)`
   background-size: cover;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
   border-radius: 20%;
-  width: 15%;
+  width: 20%;
 
   background-color: black;
 

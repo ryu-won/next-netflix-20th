@@ -1,18 +1,21 @@
 "use client"; // BottomNavBar는 클릭 이벤트가 주로 발생하기에 클라이언트 컴포넌트임. 이를 임포트하기에 Main도 클라이언트?
 
-import BottomNavBar from "@/components/BottomNavBar";
 import MovieCategoriesList from "@/components/MainPage/MovieCategoriesList";
 import styled from "styled-components";
 import MainTopView from "@/components/MainPage/MainTopView";
 import Header from "@/components/MainPage/Header";
+import { Suspense } from "react";
 
 const MainPage: React.FC = () => {
   return (
     <PageContainer>
       <Header />
-      <MainTopView />
-      <MovieCategoriesList />
-      <BottomNavBar />
+      <Suspense fallback={<h1>loading main view</h1>}>
+        <MainTopView />
+      </Suspense>
+      <Suspense fallback={<h1>loading movie categories list</h1>}>
+        <MovieCategoriesList />
+      </Suspense>
     </PageContainer>
   );
 };
