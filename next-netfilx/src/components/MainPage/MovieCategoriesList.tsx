@@ -11,6 +11,8 @@ interface Movie {
     release_date: string;
 }
 
+const API_KEY = process.env.NEXT_MIMIZAE_API_KEY;
+
 const MovieCategoriesList: React.FC = () => {
     const [moviesByCategory, setMoviesByCategory] = useState<{ [key: string]: Movie[] }>({
         "Preview": [],
@@ -24,19 +26,19 @@ const MovieCategoriesList: React.FC = () => {
         try {
             // axios를 사용한 API 호출
             const popularMovies = await axios.get(
-                `https://api.themoviedb.org/3/movie/popular?api_key=83afb7f172cb3af5f9187f5bc6e3e2c8`
+                `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`
             );
             const topRatedMovies = await axios.get(
-                `https://api.themoviedb.org/3/movie/top_rated?api_key=83afb7f172cb3af5f9187f5bc6e3e2c8`
+                `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}`
             );
             const upcomingMovies = await axios.get(
-                `https://api.themoviedb.org/3/movie/upcoming?api_key=83afb7f172cb3af5f9187f5bc6e3e2c8`
+                `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}`
             );
             const trending = await axios.get(
-                `https://api.themoviedb.org/3/trending/movie/week?api_key=83afb7f172cb3af5f9187f5bc6e3e2c8`
+                `https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}`
             );
             const NGtrending = await axios.get(
-                `https://api.themoviedb.org/3/trending/movie/day?api_key=83afb7f172cb3af5f9187f5bc6e3e2c8&region=US`
+                `https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}&region=US`
             );
 
             setMoviesByCategory({
