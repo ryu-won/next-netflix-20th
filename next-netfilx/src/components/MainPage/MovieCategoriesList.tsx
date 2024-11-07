@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import axios from "axios";
+import { 
+    getPopularMovies, 
+    getPreviewMovies, 
+    getUpcomingMovies, 
+    getTrendingMovies, 
+    getNGTrendingMovies 
+ } from "@/app/lib/movieApi";
+
 import CategorySection from "./CategorySection";
 
 interface Movie {
@@ -22,31 +29,18 @@ const MovieCategoriesList: React.FC = () => {
 
     const getMovieList = async () => {
         try {
-            const API_KEY = process.env.NEXT_PUBLIC_MIMIZAE_API_KEY;
 
-            // axios를 사용한 API 호출
-            const popularMovies = await axios.get(
-                `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`
-            );
-            const topRatedMovies = await axios.get(
-                `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}`
-            );
-            const upcomingMovies = await axios.get(
-                `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}`
-            );
-            const trending = await axios.get(
-                `https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}`
-            );
-            const NGtrending = await axios.get(
-                `https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}&region=US`
-            );
-
+            const popularMovies = await getPopularMovies();
+            const topRatedMovies = await getPreviewMovies();
+            const upcomingMovies = await getUpcomingMovies();
+            const trending = await getTrendingMovies();
+            const NGtrending = await getNGTrendingMovies();
             setMoviesByCategory({
-                "Preview": topRatedMovies.data.results,
-                "Popular on Netflix": popularMovies.data.results,
-                "New Releases": upcomingMovies.data.results,
-                "Trending Now": trending.data.results,
-                "Top 10 in Nigeria Today": NGtrending.data.results
+                "Preview": topRatedMovies,
+                "Popular on Netflix": popularMovies,
+                "New Releases": upcomingMovies,
+                "Trending Now": trending,
+                "Top 10 in Nigeria Today": NGtrending
             });
         } catch (error) {
             console.error("Error fetching movies:", error);
