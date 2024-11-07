@@ -7,8 +7,8 @@ import styled from "styled-components";
 const MainPage: React.FC = () => {
   return (
     <PageContainer>
-        <MovieCategoriesList/>
-        <BottomNavBar/>
+      <MovieCategoriesList />
+      <BottomNavBar />
     </PageContainer>
   );
 };
@@ -22,9 +22,9 @@ const PageContainer = styled.div`
   overflow-y: auto; /* 전체 화면이 아닌 부모 요소 내에서 스크롤 가능하게 설정 */
   background-color: black;
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
 
-    &::-webkit-scrollbar {
-        display: none;
-    }
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
