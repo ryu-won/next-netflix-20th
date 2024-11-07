@@ -22,8 +22,8 @@ const MovieCategoriesList: React.FC = () => {
 
     const getMovieList = async () => {
         try {
-            const API_KEY = process.env.NEXT_MIMIZAE_API_KEY;
-            
+            const API_KEY = process.env.NEXT_PUBLIC_MIMIZAE_API_KEY;
+
             // axios를 사용한 API 호출
             const popularMovies = await axios.get(
                 `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`
