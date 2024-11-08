@@ -34,7 +34,7 @@ const NavList = styled.nav`
   justify-content: space-between;
   flex: 1;
   align-items: center;
-  padding: 20px;
+  padding: 20px 30px 0 20px;
 `;
 const NavItem = styled.span`
   font-size: 1.2rem;
