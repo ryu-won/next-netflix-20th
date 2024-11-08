@@ -12,7 +12,7 @@ const BottomNavBar: React.FC = () => {
     const pathname = usePathname();  // useRouter 대신 usePathname을 사용, useRoter가 next.js 13 이상부터는 지원 x
 
     const icons = [
-        { component: homeIcon, label: "Home", path: "/" },
+        { component: homeIcon, label: "Home", path: "/main" },
         { component: searchIcon, label: "Search", path: "/search" },
         { component: comingsoonIcon, label: "Comming", path: "/comming" },
         { component: downloadIcon, label: "Download", path: "/download" },
