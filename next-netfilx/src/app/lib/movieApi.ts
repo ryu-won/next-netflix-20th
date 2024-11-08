@@ -13,10 +13,9 @@ const fetchMovies = async (endpoint: string) => {
     throw error;
   }
 };
-//&language=ko-par
 
 export const getPopularMovies = () => fetchMovies("movie/popular");
-export const getPreviewMovies = () => fetchMovies("movie/top_rated");
+export const getPreviewMovies = () => fetchMovies("movie/top_rated"); // Preview로 보여질 movie는 top_rated인 movie!
 export const getUpcomingMovies = () => fetchMovies("movie/upcoming");
 export const getTrendingMovies = () => fetchMovies("trending/movie/week");
 export const getNGTrendingMovies = () => fetchMovies("trending/movie/day");
