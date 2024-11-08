@@ -29,4 +29,5 @@ const Poster = styled.img<{ $preview?: boolean }>`
     height: ${({ $preview }) => ($preview ? "103px" : "161px")};
     border-radius: ${({ $preview }) => ($preview ? "50%" : "8px")};
     object-fit: cover;
+    cursor: pointer;
 `;
