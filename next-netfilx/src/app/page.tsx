@@ -8,7 +8,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 const HomePage = () => {
-  //여기 코드가 너무 길어서 따로 컴포넌트 만들어서 임포트하기
+  //여기 코드가 너무 길어서 따로 컴포넌트 만들어서 임포트하기, ssr 최적화 위함
   const router = useRouter();
   const [isClicked, setIsClicked] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>();
