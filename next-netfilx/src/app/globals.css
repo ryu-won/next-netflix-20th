@@ -1,11 +1,12 @@
 :root {
-  --background: rgba(32, 32, 32, 0.945)
+  --background: rgba(32, 32, 32, 0.945);
 }
 
 html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+  color: white;
 }
 
 body {
@@ -26,3 +27,10 @@ a {
   color: inherit;
   text-decoration: none;
 } /*Link의 스타일링을 위함*/
+
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}

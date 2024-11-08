@@ -56,21 +56,17 @@ const HomePage = () => {
 export default HomePage;
 
 const Container = styled.div`
-  width: 375px;
+  width: 100vw;
   height: 100vh;
   margin: 0 auto;
   background-color: black;
   display: flex;
   justify-content: center;
   align-items: center;
-
-  @media (max-width: 768px) {
-    width: 100vw;
-  }
 `;
 
 const LogoLottie = styled(Lottie)`
-  width: 60%;
+  width: 50%;
 `;
 
 const IntroButton = styled(motion.div)`
@@ -78,7 +74,7 @@ const IntroButton = styled(motion.div)`
   background-size: cover;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
   border-radius: 20%;
-  width: 50px;
-  height: 50px;
+  width: 20%;
+  height: 20%;
   background-color: black;
 `;

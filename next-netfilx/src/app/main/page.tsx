@@ -3,10 +3,14 @@
 import BottomNavBar from "@/components/BottomNavBar";
 import MovieCategoriesList from "@/components/MainPage/MovieCategoriesList";
 import styled from "styled-components";
+import MainTopView from "@/components/MainPage/MainTopView";
+import Header from "@/components/MainPage/Header";
 
 const MainPage: React.FC = () => {
   return (
     <PageContainer>
+      <Header />
+      <MainTopView />
       <MovieCategoriesList />
       <BottomNavBar />
     </PageContainer>
