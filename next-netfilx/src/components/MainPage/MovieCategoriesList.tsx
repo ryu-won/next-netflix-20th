@@ -22,7 +22,7 @@ const MovieCategoriesList: React.FC = () => {
   const [moviesByCategory, setMoviesByCategory] = useState<{
     [key: string]: Movie[];
   }>({
-    Preview: [],
+    "Preview": [],
     "Popular on Netflix": [],
     "New Releases": [],
     "Trending Now": [],
@@ -37,7 +37,7 @@ const MovieCategoriesList: React.FC = () => {
       const trending = await getTrendingMovies();
       const NGtrending = await getNGTrendingMovies();
       setMoviesByCategory({
-        Preview: topRatedMovies,
+        "Preview": topRatedMovies,
         "Popular on Netflix": popularMovies,
         "New Releases": upcomingMovies,
         "Trending Now": trending,
