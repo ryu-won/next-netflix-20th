@@ -11,6 +11,7 @@ export default async function handler(
   const response = await fetch(
     `https://api.themoviedb.org/3/${endpoint}?api_key=${API_KEY}`
   );
+  
   const data = await response.json();
   res.status(200).json(data);
 }
