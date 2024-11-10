@@ -1,6 +1,6 @@
 const fetchMovies = async (endpoint: string) => {
   try {
-    const response = await fetch(`/api/movie?endpoint=${endpoint}`);
+    const response = await fetch(`/api/movies?endpoint=${endpoint}`);
     const data = await response.json();
     return data.results;
   } catch (error) {
