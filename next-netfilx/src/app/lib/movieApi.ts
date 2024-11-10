@@ -1,6 +1,6 @@
 const fetchMovies = async (endpoint: string) => {
   try {
-    const response = await fetch(`https://netflix-clone-coding-mimizaes-projects.vercel.app/api/movies?endpoint=${endpoint}`);
+    const response = await fetch(`https://netflix-clone-coding.vercel.app/api/movies?endpoint=${endpoint}`);
     const data = await response.json();
     return data.results;
   } catch (error) {
