@@ -9,6 +9,10 @@ const fetchMovies = async (endpoint: string) => {
   }
 };
 
+export default fetchMovies;
+
+export const getMovieDetail = (id: number) => fetchMovies(`movie/${id}`);
+
 export const getPopularMovies = () => fetchMovies("movie/popular");
 export const getPreviewMovies = () => fetchMovies("movie/top_rated");
 export const getUpcomingMovies = () => fetchMovies("movie/upcoming");

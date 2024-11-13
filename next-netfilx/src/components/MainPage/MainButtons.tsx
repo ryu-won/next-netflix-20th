@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Image from "next/image";
+import PlayIcon from "../../../public/PlayIcon";
 
 export default function MainButtons() {
   return (
@@ -12,13 +13,7 @@ export default function MainButtons() {
           height={45}
           alt="Play Button Background"
         />
-        <Image
-          src="/play.svg"
-          width={72}
-          height={30}
-          alt="Play Icon"
-          className="play-icon"
-        />
+        <PlayIcon />
       </PlayBox>
       <Image src="/infoIcon.svg" width={24} height={45} alt="Info" />
     </ButtonContainer>
@@ -38,7 +33,7 @@ const PlayBox = styled.div`
   height: 45px;
   position: relative;
 
-  .play-icon {
+  & > * {
     position: absolute;
     top: 50%;
     left: 50%;
