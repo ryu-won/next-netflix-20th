@@ -1,12 +1,11 @@
 import { getMovieDetail } from "@/app/lib/movieApi";
 
 interface IMovieDetail {
-  params: { movieId: number };
+  params: { movieId: string };
 }
 
-export default async function MovieDetail({
-  params: { movieId },
-}: IMovieDetail) {
+export default async function MovieDetail({ params }: IMovieDetail) {
+  const movieId = await params.movieId;
   const movie = await getMovieDetail(movieId);
   console.log(movie);
 

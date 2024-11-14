@@ -1,6 +1,8 @@
 const fetchMovies = async (endpoint: string) => {
   try {
-    const response = await fetch(`/api/movies?endpoint=${endpoint}`);
+    console.log(`Fetching from: /api/movies/${endpoint}`); // 확인용 로그
+
+    const response = await fetch(`/api/movies/${endpoint}`);
     const data = await response.json();
     return data.results;
   } catch (error) {
@@ -11,10 +13,12 @@ const fetchMovies = async (endpoint: string) => {
 
 export default fetchMovies;
 
-export const getMovieDetail = (id: number) => fetchMovies(`movie/${id}`);
-
 export const getPopularMovies = () => fetchMovies("movie/popular");
 export const getPreviewMovies = () => fetchMovies("movie/top_rated");
 export const getUpcomingMovies = () => fetchMovies("movie/upcoming");
 export const getTrendingMovies = () => fetchMovies("trending/movie/week");
 export const getNGTrendingMovies = () => fetchMovies("trending/movie/day");
+
+export const getMovieDetail = async (id: string) => {
+  return fetchMovies(`movie/${id}`);
+};
