@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useState, useEffect, useCallback } from "react";
 import { PageContainer } from "../main/page";
@@ -63,7 +63,8 @@ const SearchPage: React.FC = () => {
   const handleScroll = useCallback(() => {
     if (
       window.innerHeight + window.scrollY >= document.body.offsetHeight - 100 &&
-      !isLoading && hasMoreResults
+      !isLoading &&
+      hasMoreResults
     ) {
       setPage((prev) => prev + 1); // 페이지 증가
     }

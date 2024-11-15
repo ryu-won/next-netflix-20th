@@ -1,13 +1,19 @@
 import styled from "styled-components";
-import Image from "next/image";
 import PlayIcon from "../../../public/PlayIcon";
+import { motion } from "framer-motion";
 
 export default function MainButtons() {
   return (
     <ButtonContainer>
-      <Image src="/myList.svg" width={41} height={45} alt="My List" />
-      <PlayBox>
-        <Image
+      <motion.img
+        src="/myList.svg"
+        width={41}
+        height={45}
+        alt="My List"
+        whileHover={{ scale: 1.1 }}
+      />
+      <PlayBox whileHover={{ scale: 1.1 }}>
+        <motion.img
           src="/playButton.svg"
           width={110}
           height={45}
@@ -15,12 +21,18 @@ export default function MainButtons() {
         />
         <PlayIcon />
       </PlayBox>
-      <Image src="/infoIcon.svg" width={24} height={45} alt="Info" />
+      <motion.img
+        src="/infoIcon.svg"
+        width={24}
+        height={45}
+        alt="Info"
+        whileHover={{ scale: 1.1 }}
+      />
     </ButtonContainer>
   );
 }
 
-const ButtonContainer = styled.div`
+const ButtonContainer = styled(motion.div)`
   display: flex;
   margin: 0 auto;
   justify-content: space-around;
@@ -28,7 +40,7 @@ const ButtonContainer = styled.div`
   margin-top: 11px;
 `;
 
-const PlayBox = styled.div`
+const PlayBox = styled(motion.div)`
   width: 110px;
   height: 45px;
   position: relative;

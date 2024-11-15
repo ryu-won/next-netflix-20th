@@ -55,6 +55,7 @@ const MoviesContainer = styled.div`
   gap: 8px;
   /* overflow: visible; */
   padding: 7px 0;
+  overflow-y: hidden;
 
   &::-webkit-scrollbar {
     display: none;

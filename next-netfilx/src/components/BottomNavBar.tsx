@@ -14,9 +14,9 @@ const BottomNavBar: React.FC = () => {
   const icons = [
     { component: homeIcon, label: "Home", path: "/main" },
     { component: searchIcon, label: "Search", path: "/search" },
-    { component: comingsoonIcon, label: "Comming", path: "/comming" },
-    { component: downloadIcon, label: "Download", path: "/download" },
-    { component: moreIcon, label: "More", path: "/more" },
+    { component: comingsoonIcon, label: "Comming", path: "/" },
+    { component: downloadIcon, label: "Download", path: "/" },
+    { component: moreIcon, label: "More", path: "/" },
   ]; //아이콘 컴포넌트와 라벨을 배열로 관리해 이 둘을 감싼 layout을 map으로 반복하기
 
   return (
@@ -50,6 +50,9 @@ const BottomNavBarContainer = styled.div`
   justify-content: space-around;
   background: #121212;
   padding: 10px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
 `;
 
 const NavIconContainer = styled.div`

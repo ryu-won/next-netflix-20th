@@ -64,7 +64,7 @@ const Container = styled.div`
 `;
 
 const LogoLottie = styled(Lottie)`
-  width: 50%;
+  width: 30%;
 `;
 
 const IntroButton = styled(motion.div)`

@@ -5,7 +5,7 @@ export default function Header() {
   return (
     <Container>
       <NavList>
-        <Logo whileHover={{ scale: 1.1 }} />
+        <Logo whileHover={{ scale: 1.4 }} />
         <NavItem>TV shows</NavItem>
         <NavItem>Movies</NavItem>
         <NavItem>My List</NavItem>

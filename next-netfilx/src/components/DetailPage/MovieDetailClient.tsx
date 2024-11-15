@@ -42,28 +42,38 @@ export function MovieDetailClient({ data }: { data: MovieDetail }) {
         animate="visible"
       >
         <ImageWrapper
+          whileHover={{ scale: 1.1 }}
           variants={itemVariants}
           src={`https://image.tmdb.org/t/p/original${data.poster_path}`}
         />
         <BottomWrapper>
-          <PlayButtonWrapper variants={itemVariants}>
+          <PlayButtonWrapper
+            variants={itemVariants}
+            whileHover={{ scale: 1.1 }}
+          >
             <PlayIcon />
           </PlayButtonWrapper>
-          <motion.h2 variants={itemVariants}>Previews</motion.h2>
-          <motion.span variants={itemVariants}>{data.overview}</motion.span>
+          <motion.h2 variants={itemVariants} whileHover={{ scale: 1.1 }}>
+            Previews
+          </motion.h2>
+          <motion.span variants={itemVariants} whileHover={{ scale: 1.1 }}>
+            {data.overview}
+          </motion.span>
         </BottomWrapper>
       </BigWrapper>
     </Suspense>
   );
 }
 const BigWrapper = styled(motion.div)`
-  width: 100%;
+  width: 375px;
   height: 100vh;
   background-color: black;
+  margin: 0 auto;
+  overflow: hidden;
 `;
 const ImageWrapper = styled(motion.div)<{ src: string }>`
   width: 100%;
-  position: relative;
+
   height: 50vh;
   background-image: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)),
     url(${(props) => props.src});
@@ -80,6 +90,7 @@ const PlayButtonWrapper = styled(motion.div)`
   background-color: #c4c4c4;
   border-radius: 5px;
   display: inline-block;
+  z-index: 999;
 `;
 
 const BottomWrapper = styled(motion.div)`
