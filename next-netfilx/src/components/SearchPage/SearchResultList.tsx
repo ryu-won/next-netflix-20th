@@ -1,7 +1,9 @@
-import Image from 'next/image';
-import styled from 'styled-components';
-import play_circle from '../../../public/SearchPage/play-circle.svg';
-import default_poster from '../../../public/SearchPage/default-poster.svg'; // 기본 이미지 경로
+import Image from "next/image";
+import styled from "styled-components";
+import play_circle from "../../../public/SearchPage/play-circle.svg";
+import default_poster from "../../../public/SearchPage/default-poster.svg"; // 기본 이미지 경로
+import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 
 export interface Movie {
   id: number;
@@ -9,7 +11,10 @@ export interface Movie {
   poster_path: string | null; // `poster_path`가 null일 수 있음
 }
 
-const SearchResultList: React.FC<{ results: Movie[]; isLoading: boolean }> = ({ results, isLoading }) => {
+const SearchResultList: React.FC<{ results: Movie[]; isLoading: boolean }> = ({
+  results,
+  isLoading,
+}) => {
   if (isLoading) {
     return (
       <ListContainer>
@@ -22,18 +27,20 @@ const SearchResultList: React.FC<{ results: Movie[]; isLoading: boolean }> = ({ 
         ))}
       </ListContainer>
     );
-  }// 검색 페이지 들어가면 9개의 영화 요소가 보이기에 9개로 설정
+  } // 검색 페이지 들어가면 9개의 영화 요소가 보이기에 9개로 설정
 
   return (
     <ListContainer>
       <TopSearches>Top Searches</TopSearches>
       {results.map((movie) => (
-        <ListItem key={movie.id}>
-          <StyledLink href={`/movie/${movie.id}`}>
+        <ListItem key={movie.id} layoutId={`${movie.id}`}>
+          <StyledLink href={`/main/detail/${movie.id}`}>
             <Poster
-              src={movie.poster_path 
-                ? `https://image.tmdb.org/t/p/w200${movie.poster_path}` 
-                : default_poster.src} // poster가 undefine일 때 기본 이미지 조건 추가
+              src={
+                movie.poster_path
+                  ? `https://image.tmdb.org/t/p/w200${movie.poster_path}`
+                  : default_poster.src
+              } // poster가 undefine일 때 기본 이미지 조건 추가
               alt={movie.title}
             />
             <Title>{movie.title}</Title>
@@ -64,20 +71,20 @@ const TopSearches = styled.p`
   margin: 15px;
 `;
 
-const ListItem = styled.li`
+const ListItem = styled(motion.li)`
   width: 100%;
   background-color: #424242;
   margin-bottom: 5px;
 `;
 
-const StyledLink = styled.a`
+const StyledLink = styled(motion.a)`
   display: flex;
   align-items: center;
   text-decoration: none;
   width: 100%;
 `;
 
-const Poster = styled.img`
+const Poster = styled(motion.img)`
   min-width: 146px;
   height: 76px;
   border-radius: 2px;
