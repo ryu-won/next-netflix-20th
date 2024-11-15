@@ -35,7 +35,11 @@ const MovieItem: React.FC<MovieItemProps> = ({
   //넘겨주는 방법이 없나..?
 
   return (
-    <MovieCard whileHover={{ scale: 1.1 }} layoutId={`${id}`}>
+    <MovieCard
+      whileHover={{ scale: 1.1 }}
+      layoutId={`${id}`}
+      whileTap={{ scale: 1.1 }}
+    >
       <Poster
         $preview={preview}
         src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
