@@ -8,7 +8,7 @@ import {
   getTrendingMovies,
   getNGTrendingMovies,
 } from "@/app/lib/movieApi";
-import CategorySection from "./CategorySection";
+import CategorySection, { CategorySectionProps } from "./CategorySection";
 
 export interface Movie {
   id: number;
@@ -18,7 +18,11 @@ export interface Movie {
   release_date?: string;
 }
 
-const AnimatedCategorySection = ({ category, movies, preview }: any) => {
+const AnimatedCategorySection = ({
+  category,
+  movies,
+  preview,
+}: CategorySectionProps) => {
   const ref = useRef(null);
   const isInView = useInView(ref, {
     once: false,
@@ -99,7 +103,7 @@ const MovieCategoriesList: React.FC = () => {
 
   return (
     <MovieListContainer>
-      {Object.entries(moviesByCategory).map(([category, movies], index) => (
+      {Object.entries(moviesByCategory).map(([category, movies]) => (
         <AnimatedCategorySection
           key={category}
           category={category}

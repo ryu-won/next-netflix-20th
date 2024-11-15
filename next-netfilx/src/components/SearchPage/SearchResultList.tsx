@@ -2,7 +2,6 @@ import Image from "next/image";
 import styled from "styled-components";
 import play_circle from "../../../public/SearchPage/play-circle.svg";
 import default_poster from "../../../public/SearchPage/default-poster.svg"; // 기본 이미지 경로
-import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 
 export interface Movie {

@@ -6,7 +6,7 @@ import MainTopView from "@/components/MainPage/MainTopView";
 import Header from "@/components/MainPage/Header";
 import { Suspense } from "react";
 
-const MainPage: React.FC = () => {
+const MainPage = () => {
   return (
     <PageContainer>
       <Header />
@@ -22,7 +22,7 @@ const MainPage: React.FC = () => {
 
 export default MainPage;
 
-export const PageContainer = styled.div`
+const PageContainer = styled.div`
   width: 375px;
   height: 100vh;
   margin: 0 auto;

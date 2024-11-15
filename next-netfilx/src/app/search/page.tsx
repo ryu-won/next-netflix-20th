@@ -1,11 +1,11 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { PageContainer } from "../main/page";
 import SearchBox from "@/components/SearchPage/SearchBox";
 import { getSearchMovies, getRandomMovies } from "../lib/movieApi";
 import SearchResultList from "@/components/SearchPage/SearchResultList";
 import { Movie } from "@/components/MainPage/MovieCategoriesList";
+import styled from "styled-components";
 
 const SearchPage: React.FC = () => {
   const [query, setQuery] = useState(""); // 검색어 상태
@@ -92,3 +92,17 @@ const SearchPage: React.FC = () => {
 };
 
 export default SearchPage;
+
+const PageContainer = styled.div`
+  width: 375px;
+  height: 100vh;
+  margin: 0 auto;
+  overflow-y: auto; /* 전체 화면이 아닌 부모 요소 내에서 스크롤 가능하게 설정 */
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;

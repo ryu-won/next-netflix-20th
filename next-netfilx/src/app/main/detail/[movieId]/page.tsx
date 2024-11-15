@@ -1,17 +1,16 @@
 import { MovieDetailClient } from "@/components/DetailPage/MovieDetailClient";
 
-interface IMovieDetail {
-  params: { movieId: string };
-}
+type PageProps = {
+  params: Promise<{ movieId: string }>;
+};
 
-export default async function MovieDetail({ params }: IMovieDetail) {
-  const movieId = await Promise.resolve(params.movieId);
+export default async function MovieDetail(props: PageProps) {
+  const { movieId } = await props.params;
 
   const response = await fetch(
     `https://api.themoviedb.org/3/movie/${movieId}?api_key=${process.env.NETFLIX_API_KEY}`
   );
   const data = await response.json();
-  console.log(data);
 
   return <MovieDetailClient data={data} />;
 }

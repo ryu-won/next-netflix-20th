@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 import MovieItem from "./MovieItem";
 import { Movie } from "./MovieCategoriesList";
 
-interface CategorySectionProps {
+export interface CategorySectionProps {
   category: string;
   movies: Movie[]; // Movie 타입 배열
   preview?: boolean;

@@ -22,7 +22,7 @@ const BottomNavBar: React.FC = () => {
   return (
     <BottomNavBarContainer>
       {icons.map((icon, index) => {
-        const { component: IconComponent, label, path } = icon; // 구조분해 할당으로 아이콘 정보를 가져옴
+        const { component: IconComponent } = icon; // 구조분해 할당으로 아이콘 정보를 가져옴
         return (
           <Link key={index} href={icon.path}>
             <NavIconContainer>
@@ -50,8 +50,8 @@ const BottomNavBarContainer = styled.div`
   justify-content: space-around;
   background: #121212;
   padding: 10px;
-  left: 0;
-  right: 0;
+  /* left: 0;
+  right: 0; */
   margin: 0 auto;
 `;
 
