@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import styled from "styled-components";
 
@@ -34,7 +35,7 @@ const MovieItem: React.FC<MovieItemProps> = ({
   //넘겨주는 방법이 없나..?
 
   return (
-    <MovieCard>
+    <MovieCard whileHover={{ scale: 1.1 }} layoutId={`${id}`}>
       <Poster
         $preview={preview}
         src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
@@ -47,7 +48,7 @@ const MovieItem: React.FC<MovieItemProps> = ({
 
 export default MovieItem;
 
-const MovieCard = styled.div`
+const MovieCard = styled(motion.div)`
   width: 120px;
 `;
 

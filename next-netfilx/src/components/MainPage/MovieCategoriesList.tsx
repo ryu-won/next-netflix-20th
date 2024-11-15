@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
+import { motion, useInView } from "framer-motion";
 import {
   getPopularMovies,
   getPreviewMovies,
@@ -7,16 +8,51 @@ import {
   getTrendingMovies,
   getNGTrendingMovies,
 } from "@/app/lib/movieApi";
-
 import CategorySection from "./CategorySection";
 
-export interface Movie { // id, title, poster_path 부분이 중복되어 Movie 타입을 재사용하기
+export interface Movie {
   id: number;
   title: string;
   poster_path: string;
-  overview?: string; // 이곳에만 필요하니 optional
-  release_date?: string; // 이곳에만 필요하니 optional
+  overview?: string;
+  release_date?: string;
 }
+
+const AnimatedCategorySection = ({ category, movies, preview }: any) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, {
+    once: false,
+    amount: 0.2,
+    margin: "0px 0px -20% 0px",
+  });
+
+  const variants = {
+    hidden: {
+      opacity: 0,
+      y: 50,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+        delay: 0.2,
+      },
+    },
+  };
+
+  return (
+    <motion.div
+      ref={ref}
+      variants={variants}
+      initial="hidden"
+      animate={isInView ? "visible" : "hidden"}
+    >
+      <CategorySection category={category} movies={movies} preview={preview} />
+    </motion.div>
+  );
+};
 
 const MovieCategoriesList: React.FC = () => {
   const [moviesByCategory, setMoviesByCategory] = useState<{
@@ -31,14 +67,20 @@ const MovieCategoriesList: React.FC = () => {
 
   const getMovieList = async () => {
     try {
-      const [popularMovies, topRatedMovies, upcomingMovies, trending, NGtrending] = await Promise.all([
+      const [
+        popularMovies,
+        topRatedMovies,
+        upcomingMovies,
+        trending,
+        NGtrending,
+      ] = await Promise.all([
         getPopularMovies(),
         getPreviewMovies(),
         getUpcomingMovies(),
         getTrendingMovies(),
         getNGTrendingMovies(),
-      ]); //promise.all 사용해서 비동기적으로 불러와지는 응답들 한 번에 처리!
-  
+      ]);
+
       setMoviesByCategory({
         Preview: topRatedMovies,
         "Popular on Netflix": popularMovies,
@@ -50,7 +92,6 @@ const MovieCategoriesList: React.FC = () => {
       console.error("Error fetching movies:", error);
     }
   };
-  
 
   useEffect(() => {
     getMovieList();
@@ -58,8 +99,8 @@ const MovieCategoriesList: React.FC = () => {
 
   return (
     <MovieListContainer>
-      {Object.entries(moviesByCategory).map(([category, movies]) => (
-        <CategorySection
+      {Object.entries(moviesByCategory).map(([category, movies], index) => (
+        <AnimatedCategorySection
           key={category}
           category={category}
           movies={movies}
@@ -76,4 +117,10 @@ const MovieListContainer = styled.main`
   margin-bottom: 60px;
   color: white;
   flex-grow: 1;
+
+  padding: 0 20px;
+
+  @media (max-width: 768px) {
+    padding: 0 10px;
+  }
 `;

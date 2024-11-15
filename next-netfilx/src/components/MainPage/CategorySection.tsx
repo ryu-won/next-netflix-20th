@@ -53,6 +53,8 @@ const MoviesContainer = styled.div`
   display: flex;
   overflow-x: auto;
   gap: 8px;
+  /* overflow: visible; */
+  padding: 7px 0;
 
   &::-webkit-scrollbar {
     display: none;

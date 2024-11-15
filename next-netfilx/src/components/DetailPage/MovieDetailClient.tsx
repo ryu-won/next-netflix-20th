@@ -2,6 +2,7 @@
 import { Suspense } from "react";
 import styled from "styled-components";
 import PlayIcon from "../../../public/PlayIcon";
+import { motion } from "framer-motion";
 
 interface MovieDetail {
   poster_path: string;
@@ -10,12 +11,13 @@ interface MovieDetail {
   overview: string;
   release_date: string;
   vote_average: number;
+  id: number;
   // 필요한 다른 속성들 추가
 }
 export function MovieDetailClient({ data }: { data: MovieDetail }) {
   return (
     <Suspense fallback={<div>로딩중</div>}>
-      <BigWrapper>
+      <BigWrapper layoutId={`${data.id}`}>
         <ImageWrapper
           src={`https://image.tmdb.org/t/p/original${data.poster_path}`}
         />
@@ -30,7 +32,7 @@ export function MovieDetailClient({ data }: { data: MovieDetail }) {
     </Suspense>
   );
 }
-const BigWrapper = styled.div`
+const BigWrapper = styled(motion.div)`
   width: 100%;
   height: 100vh;
   background-color: black;
@@ -62,6 +64,7 @@ const BottomWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
+  overflow: visible;
 
   & h1 {
     margin-top: 7px;
