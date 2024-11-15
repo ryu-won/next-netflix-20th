@@ -2,7 +2,7 @@ import Image from "next/image";
 import styled from "styled-components";
 import play_circle from "../../../public/SearchPage/play-circle.svg";
 import default_poster from "../../../public/SearchPage/default-poster.svg"; // 기본 이미지 경로
-import { motion, useInView } from "framer-motion";
+import { AnimatePresence, motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
 export interface Movie {
@@ -33,31 +33,41 @@ const AnimatedListItem = ({ movie }: { movie: Movie }) => {
         delay: 0.2,
       },
     },
+    exit: {
+      opacity: 0,
+      y: -5,
+      transition: {
+        duration: 0.1,
+      },
+    },
   };
 
   return (
-    <ListItem
-      ref={itemRef}
-      layoutId={`${movie.id}`}
-      variants={variants}
-      initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
-    >
-      <StyledLink href={`/main/detail/${movie.id}`}>
-        <Poster
-          src={
-            movie.poster_path
-              ? `https://image.tmdb.org/t/p/w200${movie.poster_path}`
-              : default_poster.src
-          }
-          alt={movie.title}
-        />
-        <Title>{movie.title}</Title>
-        <ImageWrapper>
-          <Image src={play_circle} alt="play button" />
-        </ImageWrapper>
-      </StyledLink>
-    </ListItem>
+    <AnimatePresence>
+      <ListItem
+        ref={itemRef}
+        layoutId={`${movie.id}`}
+        variants={variants}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+        exit="exit"
+      >
+        <StyledLink href={`/main/detail/${movie.id}`}>
+          <Poster
+            src={
+              movie.poster_path
+                ? `https://image.tmdb.org/t/p/w200${movie.poster_path}`
+                : default_poster.src
+            }
+            alt={movie.title}
+          />
+          <Title>{movie.title}</Title>
+          <ImageWrapper>
+            <Image src={play_circle} alt="play button" />
+          </ImageWrapper>
+        </StyledLink>
+      </ListItem>
+    </AnimatePresence>
   );
 };
 
