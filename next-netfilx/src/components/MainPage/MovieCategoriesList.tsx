@@ -10,12 +10,12 @@ import {
 
 import CategorySection from "./CategorySection";
 
-interface Movie {
+export interface Movie { // id, title, poster_path 부분이 중복되어 Movie 타입을 재사용하기
   id: number;
   title: string;
   poster_path: string;
-  overview: string;
-  release_date: string;
+  overview?: string; // 이곳에만 필요하니 optional
+  release_date?: string; // 이곳에만 필요하니 optional
 }
 
 const MovieCategoriesList: React.FC = () => {

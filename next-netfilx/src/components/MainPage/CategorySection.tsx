@@ -1,12 +1,12 @@
 import styled, { css } from "styled-components";
 import MovieItem from "./MovieItem";
+import { Movie } from "./MovieCategoriesList";
 
 interface CategorySectionProps {
     category: string;
-    movies: Array<{ id: number; title: string; poster_path: string }>;
+    movies: Movie[]; // Movie 타입 배열
     preview?: boolean;
-}
-
+  }
 const CategorySection: React.FC<CategorySectionProps> = ({ category, movies = [], preview = false }) => {
     return (
         <CategoryContainer>

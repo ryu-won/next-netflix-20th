@@ -1,13 +1,10 @@
 import styled from "styled-components";
+import { Movie } from "./MovieCategoriesList";
 
 interface MovieItemProps {
-    movie: {
-        title: string;
-        poster_path: string;
-    },
+    movie: Movie;
     preview: boolean;
-}
-
+  }
 // 영화 하나하나 담는 요소
 
 const MovieItem: React.FC<MovieItemProps> = ({ movie, preview = false  }) => {

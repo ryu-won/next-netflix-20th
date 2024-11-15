@@ -43,7 +43,7 @@ export default BottomNavBar;
 const BottomNavBarContainer = styled.div`
     position: fixed;
     bottom: 0;
-    width: 373px;
+    width: 375px;
     display: flex;
     justify-content: space-around;
     background: #121212;
