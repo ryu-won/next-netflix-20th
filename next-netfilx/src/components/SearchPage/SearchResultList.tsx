@@ -2,13 +2,64 @@ import Image from "next/image";
 import styled from "styled-components";
 import play_circle from "../../../public/SearchPage/play-circle.svg";
 import default_poster from "../../../public/SearchPage/default-poster.svg"; // 기본 이미지 경로
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
 export interface Movie {
   id: number;
   title: string;
   poster_path: string | null; // `poster_path`가 null일 수 있음
 }
+// 개별 아이템을 위한 컴포넌트
+const AnimatedListItem = ({ movie }: { movie: Movie }) => {
+  const itemRef = useRef(null);
+  const isInView = useInView(itemRef, {
+    once: false,
+    amount: 0.2,
+    margin: "0px 0px 30% 0px",
+  });
+
+  const variants = {
+    hidden: {
+      opacity: 0,
+      y: 50,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+        delay: 0.2,
+      },
+    },
+  };
+
+  return (
+    <ListItem
+      ref={itemRef}
+      layoutId={`${movie.id}`}
+      variants={variants}
+      initial="hidden"
+      animate={isInView ? "visible" : "hidden"}
+    >
+      <StyledLink href={`/main/detail/${movie.id}`}>
+        <Poster
+          src={
+            movie.poster_path
+              ? `https://image.tmdb.org/t/p/w200${movie.poster_path}`
+              : default_poster.src
+          }
+          alt={movie.title}
+        />
+        <Title>{movie.title}</Title>
+        <ImageWrapper>
+          <Image src={play_circle} alt="play button" />
+        </ImageWrapper>
+      </StyledLink>
+    </ListItem>
+  );
+};
 
 const SearchResultList: React.FC<{ results: Movie[]; isLoading: boolean }> = ({
   results,
@@ -32,22 +83,7 @@ const SearchResultList: React.FC<{ results: Movie[]; isLoading: boolean }> = ({
     <ListContainer>
       <TopSearches>Top Searches</TopSearches>
       {results.map((movie) => (
-        <ListItem key={movie.id} layoutId={`${movie.id}`}>
-          <StyledLink href={`/main/detail/${movie.id}`}>
-            <Poster
-              src={
-                movie.poster_path
-                  ? `https://image.tmdb.org/t/p/w200${movie.poster_path}`
-                  : default_poster.src
-              } // poster가 undefine일 때 기본 이미지 조건 추가
-              alt={movie.title}
-            />
-            <Title>{movie.title}</Title>
-            <ImageWrapper>
-              <Image src={play_circle} alt="play button" />
-            </ImageWrapper>
-          </StyledLink>
-        </ListItem>
+        <AnimatedListItem key={movie.id} movie={movie} />
       ))}
     </ListContainer>
   );
@@ -76,7 +112,7 @@ const ListItem = styled(motion.li)`
   margin-bottom: 5px;
 `;
 
-const StyledLink = styled(motion.a)`
+const StyledLink = styled.a`
   display: flex;
   align-items: center;
   text-decoration: none;
