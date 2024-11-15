@@ -5,8 +5,6 @@ const API_KEY = process.env.NETFLIX_API_KEY;
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
   const endpoint = searchParams.get("endpoint");
-  const query = searchParams.get("query");
-  const page = searchParams.get("page");
 
   if (!endpoint) {
     return NextResponse.json(
@@ -16,11 +14,8 @@ export async function GET(req: Request) {
   }
 
   // endpoint가 이미 movie/id 형식인 경우와 아닌 경우를 구분
-  const baseUrl = `https://api.themoviedb.org/3/${endpoint}`;
-  const url = `${baseUrl}?api_key=${API_KEY}${
-    query ? `&query=${encodeURIComponent(query)}` : ""
-  }${page ? `&page=${page}` : ""}`;
-
+  const baseUrl = `https://api.themoviedb.org/3/movie/`;
+  const url = `${baseUrl}${endpoint}?api_key=${API_KEY}`;
   try {
     const response = await fetch(url);
     if (!response.ok) {

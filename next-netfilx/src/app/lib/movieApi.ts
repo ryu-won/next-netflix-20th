@@ -28,6 +28,7 @@ export const getSearchMovies = (query: string, page: number = 5) =>
 // 검색어 입력받아 검색어(query 값) 기준 영화 요소들 불러오기
 // debounce 이용
 // query를 fetchMovies로 전달해 삼항연산자 이용 -> query가 필요한 요청과 안 필요한 요청 구분
+export const getMovieDetail = (id: string) => fetchMovies(id);
 
 // 배열을 무작위로 섞는 함수
 const shuffleArray = (array: Movie[]) => {

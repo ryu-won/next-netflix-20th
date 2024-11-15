@@ -3,12 +3,10 @@ import MovieItem from "./MovieItem";
 import { Movie } from "./MovieCategoriesList";
 
 interface CategorySectionProps {
-<<<<<<< HEAD
   category: string;
-  movies: Array<{ id: number; title: string; poster_path: string }>;
+  movies: Movie[]; // Movie 타입 배열
   preview?: boolean;
 }
-
 const CategorySection: React.FC<CategorySectionProps> = ({
   category,
   movies = [],
@@ -21,31 +19,14 @@ const CategorySection: React.FC<CategorySectionProps> = ({
         {movies.map((movie) => (
           <MovieItem
             key={movie.id}
-            id={movie.id}
             movie={movie}
             preview={preview}
+            id={movie.id}
           />
         ))}
       </MoviesContainer>
     </CategoryContainer>
   );
-=======
-    category: string;
-    movies: Movie[]; // Movie 타입 배열
-    preview?: boolean;
-  }
-const CategorySection: React.FC<CategorySectionProps> = ({ category, movies = [], preview = false }) => {
-    return (
-        <CategoryContainer>
-            <CategoryTitle $preview={preview}>{category}</CategoryTitle>
-            <MoviesContainer>
-                {movies.map((movie) => (
-                    <MovieItem key={movie.id} movie={movie} preview={preview} />
-                ))}
-            </MoviesContainer>
-        </CategoryContainer>
-    );
->>>>>>> upstream/main
 };
 
 export default CategorySection;
