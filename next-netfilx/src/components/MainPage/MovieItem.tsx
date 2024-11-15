@@ -1,13 +1,10 @@
 import styled from "styled-components";
+import { Movie } from "./MovieCategoriesList";
 
 interface MovieItemProps {
-    movie: {
-        title: string;
-        poster_path: string;
-    },
+    movie: Movie;
     preview: boolean;
-}
-
+  }
 // 영화 하나하나 담는 요소
 
 const MovieItem: React.FC<MovieItemProps> = ({ movie, preview = false  }) => {
@@ -25,7 +22,7 @@ const MovieCard = styled.div`
 `;
 
 const Poster = styled.img<{ $preview?: boolean }>`
-    width: ${({ $preview }) => ($preview ? "103px" : "103px")}; /* preview일 때는 너비와 높이 100px로 설정해서 정원형으로 만들 수 있도록 함*/
+    width: 103px;
     height: ${({ $preview }) => ($preview ? "103px" : "161px")};
     border-radius: ${({ $preview }) => ($preview ? "50%" : "8px")};
     object-fit: cover;

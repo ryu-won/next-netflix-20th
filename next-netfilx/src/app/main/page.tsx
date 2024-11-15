@@ -22,7 +22,7 @@ const MainPage: React.FC = () => {
 
 export default MainPage;
 
-const PageContainer = styled.div`
+export const PageContainer = styled.div`
   width: 375px;
   height: 100vh;
   margin: 0 auto;
