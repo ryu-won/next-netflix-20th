@@ -50,8 +50,8 @@ const BottomNavBarContainer = styled.div`
   justify-content: space-around;
   background: #121212;
   padding: 10px;
-  /* left: 0;
-  right: 0; */
+  left: 0;
+  right: 0;
   margin: 0 auto;
 `;
 
