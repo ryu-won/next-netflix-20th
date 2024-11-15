@@ -1,7 +1,9 @@
 import { useRouter } from "next/navigation";
 import styled from "styled-components";
+import { Movie } from "./MovieCategoriesList";
 
 interface MovieItemProps {
+<<<<<<< HEAD
   movie: {
     title: string;
     poster_path: string;
@@ -10,6 +12,11 @@ interface MovieItemProps {
   id: number;
 }
 
+=======
+    movie: Movie;
+    preview: boolean;
+  }
+>>>>>>> upstream/main
 // 영화 하나하나 담는 요소
 
 const MovieItem: React.FC<MovieItemProps> = ({
@@ -52,6 +59,7 @@ const MovieCard = styled.div`
 `;
 
 const Poster = styled.img<{ $preview?: boolean }>`
+<<<<<<< HEAD
   width: ${({ $preview }) =>
     $preview
       ? "103px"
@@ -61,3 +69,11 @@ const Poster = styled.img<{ $preview?: boolean }>`
   object-fit: cover;
   cursor: pointer;
 `;
+=======
+    width: 103px;
+    height: ${({ $preview }) => ($preview ? "103px" : "161px")};
+    border-radius: ${({ $preview }) => ($preview ? "50%" : "8px")};
+    object-fit: cover;
+    cursor: pointer;
+`;
+>>>>>>> upstream/main

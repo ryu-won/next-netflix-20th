@@ -22,7 +22,7 @@ const BottomNavBar: React.FC = () => {
     return (
         <BottomNavBarContainer>
             {icons.map((icon, index) => {
-                const IconComponent = icon.component;  // 동적 아이콘 컴포넌트 설정
+                const { component: IconComponent, label, path } = icon;  // 구조분해 할당으로 아이콘 정보를 가져옴
                 return (
                     <Link key={index} href={icon.path}>
                         <NavIconContainer>
@@ -43,7 +43,7 @@ export default BottomNavBar;
 const BottomNavBarContainer = styled.div`
     position: fixed;
     bottom: 0;
-    width: 373px;
+    width: 375px;
     display: flex;
     justify-content: space-around;
     background: #121212;

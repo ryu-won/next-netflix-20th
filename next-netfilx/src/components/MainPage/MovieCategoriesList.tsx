@@ -10,12 +10,12 @@ import {
 
 import CategorySection from "./CategorySection";
 
-interface Movie {
+export interface Movie { // id, title, poster_path 부분이 중복되어 Movie 타입을 재사용하기
   id: number;
   title: string;
   poster_path: string;
-  overview: string;
-  release_date: string;
+  overview?: string; // 이곳에만 필요하니 optional
+  release_date?: string; // 이곳에만 필요하니 optional
 }
 
 const MovieCategoriesList: React.FC = () => {
@@ -31,11 +31,14 @@ const MovieCategoriesList: React.FC = () => {
 
   const getMovieList = async () => {
     try {
-      const popularMovies = await getPopularMovies();
-      const topRatedMovies = await getPreviewMovies();
-      const upcomingMovies = await getUpcomingMovies();
-      const trending = await getTrendingMovies();
-      const NGtrending = await getNGTrendingMovies();
+      const [popularMovies, topRatedMovies, upcomingMovies, trending, NGtrending] = await Promise.all([
+        getPopularMovies(),
+        getPreviewMovies(),
+        getUpcomingMovies(),
+        getTrendingMovies(),
+        getNGTrendingMovies(),
+      ]); //promise.all 사용해서 비동기적으로 불러와지는 응답들 한 번에 처리!
+  
       setMoviesByCategory({
         Preview: topRatedMovies,
         "Popular on Netflix": popularMovies,
@@ -47,6 +50,7 @@ const MovieCategoriesList: React.FC = () => {
       console.error("Error fetching movies:", error);
     }
   };
+  
 
   useEffect(() => {
     getMovieList();
