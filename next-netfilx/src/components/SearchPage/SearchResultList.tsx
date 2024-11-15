@@ -15,8 +15,8 @@ const AnimatedListItem = ({ movie }: { movie: Movie }) => {
   const itemRef = useRef(null);
   const isInView = useInView(itemRef, {
     once: false,
-    amount: 0.2,
-    margin: "0px 0px 30% 0px",
+    amount: 0.9,
+    margin: "0px 0px 50% 0px",
   });
 
   const variants = {
@@ -28,7 +28,7 @@ const AnimatedListItem = ({ movie }: { movie: Movie }) => {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
+        duration: 0.9,
         ease: "easeOut",
         delay: 0.2,
       },
