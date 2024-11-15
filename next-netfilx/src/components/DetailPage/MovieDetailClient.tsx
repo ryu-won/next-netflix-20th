@@ -14,19 +14,43 @@ interface MovieDetail {
   id: number;
   // 필요한 다른 속성들 추가
 }
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { duration: 1, staggerChildren: 0.3 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5 },
+  },
+};
+
 export function MovieDetailClient({ data }: { data: MovieDetail }) {
   return (
     <Suspense fallback={<div>로딩중</div>}>
-      <BigWrapper layoutId={`${data.id}`}>
+      <BigWrapper
+        layoutId={`${data.id}`}
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
         <ImageWrapper
+          variants={itemVariants}
           src={`https://image.tmdb.org/t/p/original${data.poster_path}`}
         />
         <BottomWrapper>
-          <PlayButtonWrapper>
+          <PlayButtonWrapper variants={itemVariants}>
             <PlayIcon />
           </PlayButtonWrapper>
-          <h2>Previews</h2>
-          <span>{data.overview}</span>
+          <motion.h2 variants={itemVariants}>Previews</motion.h2>
+          <motion.span variants={itemVariants}>{data.overview}</motion.span>
         </BottomWrapper>
       </BigWrapper>
     </Suspense>
@@ -37,7 +61,7 @@ const BigWrapper = styled(motion.div)`
   height: 100vh;
   background-color: black;
 `;
-const ImageWrapper = styled.div<{ src: string }>`
+const ImageWrapper = styled(motion.div)<{ src: string }>`
   width: 100%;
   position: relative;
   height: 50vh;
@@ -49,7 +73,7 @@ const ImageWrapper = styled.div<{ src: string }>`
   position: relative;
 `;
 
-const PlayButtonWrapper = styled.div`
+const PlayButtonWrapper = styled(motion.div)`
   width: 90%;
   text-align: center;
   padding: 8px 0;
@@ -58,7 +82,7 @@ const PlayButtonWrapper = styled.div`
   display: inline-block;
 `;
 
-const BottomWrapper = styled.div`
+const BottomWrapper = styled(motion.div)`
   margin: 0 auto;
   padding-left: 36px;
   display: flex;
